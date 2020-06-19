@@ -1,9 +1,9 @@
 
 /**
- * Write a description of class Person here.
+ * Making a person and followers
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @Anh Hoang
+ * @version 1.0
  */
 public class Person
 {   

@@ -4,10 +4,10 @@ import java.util.Scanner;
 import java.io.*;
 import java.awt.event.*;
 /**
- * Write a description of class Queue here.
+ * Making a Queue
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @Anh Hoang
+ * @version 1.0
  */
 public class Queue{
     Person Head;

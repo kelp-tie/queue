@@ -1,8 +1,4 @@
-import javax.swing.*;
-import java.awt.*;
-import java.util.Scanner;
-import java.io.*;
-import java.awt.event.*;
+
 /**
  * Making a Queue
  *
@@ -31,14 +27,14 @@ public class Queue{
             Tail = name;
         }
     } // add a person to the queue
-
+    
+    
     public Person removePerson(){
         Person name2;
         name2 = Head;
         if (Head != null){
-            Person name= Head.follower;
-            Head.follower = null;
-            Head = name;
+            Head= Head.follower;
+            name2.follower = null;
         }
         else System.out.println("Queue's empty.");
         return name2;

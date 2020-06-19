@@ -9,7 +9,7 @@ public class Person
 {   
     String name;
     Person follower;
-    boolean isStudent;
+    boolean isStudent;  // for person to be a student or a staff
     public Person(String name, boolean isStudent){
         this.isStudent = isStudent;
         if (isStudent == true){
@@ -20,21 +20,13 @@ public class Person
             this.name=name;
             System.out.println("Staff:"+name);
         }
-    }
-
-    public void setName(String name){
-        this.name=name;
-    }
-
-    public void addFollower(String name, boolean isStudent){
-        this.follower= new Person(name, isStudent);
-    }
+    } // initate person
 
     public void setFollower(Person follower){
         this.follower= follower;
-    }
+    } // add a follower
 
     public Person returnFollower(){
         return follower;
-    }
-}
+    } // return a follower
+}//Class

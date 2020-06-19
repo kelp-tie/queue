@@ -19,7 +19,7 @@ public class Queue{
     public boolean queueEmpty(){
         if (Head == null) return true;
         else  return false;
-    }
+    } // checking if queue are empty    
 
     public void addPerson(Person name){
         this.queueEmpty();
@@ -30,7 +30,7 @@ public class Queue{
             Tail.setFollower(name);
             Tail = name;
         }
-    }
+    } // add a person to the queue
 
     public Person removePerson(){
         Person name2;
@@ -42,6 +42,6 @@ public class Queue{
         }
         else System.out.println("Queue's empty.");
         return name2;
-    }
+    } // remove and return a person from the queue
 
 }

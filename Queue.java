@@ -7,36 +7,82 @@
  */
 public class Queue{
     Person Head;
+    Person pTail; 
     Person Tail;
     public Queue(){
-
+        this.Head=null;
+        this.pTail=null;
+        this.Tail=null;
     }
+
+    public void printQueue(){
+        if (queueEmpty() == false){
+            Person nextP = Head;
+            System.out.println("");
+            System.out.print(nextP.name);
+
+            while(nextP != Tail){
+                while(nextP != pTail){
+                    nextP = nextP.follower; 
+                    System.out.print(", ");
+                    System.out.print(nextP.name);
+                }
+                nextP = nextP.follower; 
+                System.out.print(", ");
+                System.out.print(nextP.name);
+            }
+        }
+    }// prints out a queue
 
     public boolean queueEmpty(){
         if (Head == null) return true;
         else  return false;
     } // checking if queue are empty    
 
-    public void addPerson(Person name){
-        this.queueEmpty();
+    public void addPerson(Person name, boolean isStaff){
         if (queueEmpty() == true){
-            Tail = name;
             Head = name;
-        }else{
-            Tail.setFollower(name);
+            pTail = name;
+            Tail= name;
+        }
+        if(isStaff==true){
+            if(pTail == null){
+                name.setFollower(Head.follower);
+                Head = name;
+            }else{
+                name.setFollower(pTail.follower);
+                pTail.setFollower(name);
+            }
+            pTail=name;    
+        }else if(isStaff==false){
+            if (Tail == null){
+                if(pTail == null){
+                    name.setFollower(Head.follower);
+                    Head = name;
+                } else Tail = name;
+            } else{
+                name.setFollower(Tail.follower);
+                Tail.setFollower(name);
+            }
             Tail = name;
         }
-    } // add a person to the queue
-    
-    
+    }// add a person to the queue
+
     public Person removePerson(){
-        Person name2;
-        name2 = Head;
+        Person name2 = Head;
         if (Head != null){
-            Head= Head.follower;
-            name2.follower = null;
+            if (pTail == Head){
+                pTail=null;
+            }
+            else if (Tail == Head) {
+                Head=null;
+                Tail=null;
+            }
+            else{
+                Head= Head.follower;
+                name2.follower = null;
+            }
         }
-        else System.out.println("Queue's empty.");
         return name2;
     } // remove and return a person from the queue
 

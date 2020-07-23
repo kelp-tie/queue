@@ -9,18 +9,11 @@ public class Person
 {   
     String name;
     Person follower;
-    boolean isStudent;  // for person to be a student or a staff
-    public Person(String name, boolean isStudent){
-        this.isStudent = isStudent;
-        if (isStudent == true){
-            this.name=name;
-            System.out.println("Student:"+name);
-        }
-        else{
-            this.name=name;
-            System.out.println("Staff:"+name);
-        }
-    } // initate person
+    boolean isStaff;
+    public Person(String name, boolean isStaff){
+        this.name= name;
+        this.isStaff = isStaff;
+        }// initate person
 
     public void setFollower(Person follower){
         this.follower= follower;

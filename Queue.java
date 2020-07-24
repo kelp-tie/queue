@@ -45,26 +45,21 @@ public class Queue{
             pTail = name;
             Tail= name;
         }
-        if(isStaff==true){
-            if(pTail == null){
-                name.setFollower(Head.follower);
-                Head = name;
-            }else{
-                name.setFollower(pTail.follower);
-                pTail.setFollower(name);
-            }
-            pTail=name;    
-        }else if(isStaff==false){
-            if (Tail == null){
-                if(pTail == null){
-                    name.setFollower(Head.follower);
-                    Head = name;
-                } else Tail = name;
+        if(isStaff == true){
+            name.setFollower(Head.follower);
+            Head = name;
+        }else{
+            name.setFollower(pTail.follower);
+            pTail.setFollower(name);
+        }
+        pTail=name;   
+        if(isStaff == false){
+            if (Head == null){
+                Tail = name;
+                Tail = Head;
             } else{
-                name.setFollower(Tail.follower);
-                Tail.setFollower(name);
+                Tail = name;
             }
-            Tail = name;
         }
     }// add a person to the queue
 

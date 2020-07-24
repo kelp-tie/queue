@@ -22,11 +22,12 @@ public class PQueue
     }
 
     public void PEnqueue(Person name, boolean isStaff){
-        if(name.isStaff == true){
+        if(isStaff == true){
             p.addPerson(name, isStaff);
+        }else{
+            q.addPerson(name, isStaff);
         }
-        else q.addPerson(name, isStaff);
-    }//priority enqueue 
+        }//priority enqueue 
 
     public Person PDequeue(){
         if(! p.queueEmpty()){

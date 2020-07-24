@@ -33,7 +33,7 @@ public class GUI extends JFrame implements ActionListener{
             reply= input.getText();
             input2.setLocationRelativeTo(this);
             input2.setVisible(true);
-            reply2= input.getText();
+            reply2= input2.getText();
             if(reply2.equals("yes")){
                 isStaff = true;
             }else{   
@@ -46,7 +46,11 @@ public class GUI extends JFrame implements ActionListener{
             queue.removePerson();
             break;
             case "Print":
-            queue.printQueue();
+            if(queue.queueEmpty() == false){
+                    queue.printQueue();
+            } else {
+                System.out.println("Queue's empty.");
+            }
             break;
             default: 
         }

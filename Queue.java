@@ -40,45 +40,47 @@ public class Queue{
     } // checking if queue are empty    
 
     public void addPerson(Person name, boolean isStaff){
-        if (queueEmpty() == true){
-            Head = name;
-            pTail = name;
-            Tail= name;
-        }
         if(isStaff == true){
-            name.setFollower(Head.follower);
-            Head = name;
-        }else{
-            name.setFollower(pTail.follower);
-            pTail.setFollower(name);
-        }
-        pTail=name;   
-        if(isStaff == false){
-            if (Head == null){
-                Tail = name;
-                Tail = Head;
-            } else{
+            if(queueEmpty() == true){ //empty queue
+                Head = name;
+                pTail= name;
                 Tail = name;
             }
+            else { //if not empty then add at the end of queue
+                if(pTail == null){ //add to priority queue if empty
+                    name.setFollower(Head.follower);
+                    Head= name;
+                } else { //if not then add at the end of priority queue
+                    name.setFollower(pTail.follower);
+                    pTail.setFollower(name);
+                }
+                pTail = name;
+            }
+        } else { //normal enqueue
+            if(Head == null) //empty queue
+                Head = name;
+            else //if not then add at the end of the queue
+                Tail.setFollower(name);
+            Tail= name;
         }
     }// add a person to the queue
 
     public Person removePerson(){
         Person name2 = Head;
-        if (Head != null){
-            if (pTail == Head){
+        if (Head != null){ //queue not empty
+            if (pTail == Head){ // empty priority queue
                 pTail=null;
             }
-            else if (Tail == Head) {
+            else if (Tail == Head) { //empty normal queue
                 Head=null;
                 Tail=null;
             }
-            else{
+            else{ //dequeue Head
                 Head= Head.follower;
                 name2.follower = null;
             }
         }
-        return name2;
+        return name2; //return person
     } // remove and return a person from the queue
 
 }

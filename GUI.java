@@ -23,7 +23,7 @@ public class GUI extends JFrame implements ActionListener{
         switch(cmd){
             case "Help": 
             break;
-            case "Info": 
+            case "Read": 
             break;
             case "Quit": System.exit(0); 
             break;
@@ -81,7 +81,7 @@ public class GUI extends JFrame implements ActionListener{
         menuItemA1.addActionListener(this);
         menu1.add(menuItemA1);
 
-        JMenuItem menuItemA2 = new JMenuItem("Info");
+        JMenuItem menuItemA2 = new JMenuItem("Read");
         menuItemA2.addActionListener(this);
         menuItemA2.setAccelerator(KeyStroke.getKeyStroke('i'));
         menu1.add(menuItemA2);

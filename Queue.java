@@ -1,4 +1,3 @@
-
 /**
  * Making a Queue
  *
@@ -16,20 +15,13 @@ public class Queue{
     }
 
     public void printQueue(){
+        System.out.println("***");
         if (queueEmpty() == false){
             Person nextP = Head;
-            System.out.println("");
-            System.out.print(nextP.name);
-
-            while(nextP != Tail){
-                while(nextP != pTail){
-                    nextP = nextP.follower; 
-                    System.out.print(", ");
-                    System.out.print(nextP.name);
-                }
+            while(nextP != null){
+                System.out.print(nextP.name);
                 nextP = nextP.follower; 
                 System.out.print(", ");
-                System.out.print(nextP.name);
             }
         }
     }// prints out a queue
@@ -38,7 +30,7 @@ public class Queue{
         if (Head == null) return true;
         else  return false;
     } // checking if queue are empty    
-
+    
     public void addPerson(Person name, boolean isStaff){
         if(isStaff == true){
             if(queueEmpty() == true){ //empty queue
@@ -48,7 +40,7 @@ public class Queue{
             }
             else { //if not empty then add at the end of queue
                 if(pTail == null){ //add to priority queue if empty
-                    name.setFollower(Head.follower);
+                    name.setFollower(Head);
                     Head= name;
                 } else { //if not then add at the end of priority queue
                     name.setFollower(pTail.follower);

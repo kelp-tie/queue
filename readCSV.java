@@ -18,8 +18,7 @@ import java.io.File;  //  File handles
 
 public class readCSV
 {
-
-    final String filename="arrivals.csv"; // change to reflect the CSV we are reading
+    final String filename= "arrivals.csv"; // change to reflect the CSV we are reading
     final int MAXLINES=100; // for ease of writing, we are only going to read at most 100 lines.
     final int VALUESPERLINE=4;  // for ease of writing, we know how many values we get on each line.
     /**
@@ -31,8 +30,8 @@ public class readCSV
         String CSVlines[] = new String[MAXLINES];
         String AllLinesAllElements[][]=new String[MAXLINES][VALUESPERLINE];  // where we keep all those lines we read in.
         int linecount=0;  // initially keeps track of lines read, eventually used to remember the number that was read;
-
-        try {
+        
+        try{
             Scanner reader = new Scanner(thefile); // open the file with the Scanner
 
             // Read in the file, stop at file end or if we read too many lines
@@ -52,6 +51,15 @@ public class readCSV
             for (int i =0; i<linecount; i++){
                 String values[] = CSVlines[i].split(",");  // process the line from the Scanner and break it up at each comma.
 
+                int students = Integer.parseInt(values[1]);  
+                for( int j=0; i<students; i++){
+                    
+                }
+
+                int staffs = Integer.parseInt(values[2]);
+                for( int k=0; k<staffs; k++){
+
+                }
                 // Now we will print it out again, again, this is just to prove a point.  Real code doesn't need this.
                 //for (int j=0; j< values.length;j++)
                 //System.out.print(values[j]+"****");
@@ -70,12 +78,9 @@ public class readCSV
         //System.out.println("The first column read");
         //for (int i=0;i<linecount;i++)
         //    System.out.println(AllLinesAllElements[i][0]);
-        
+
         System.out.println("Time; Students arrived; Staff arrived; People served");
         for(int i=0;i<linecount;i++)
             System.out.println("At "+AllLinesAllElements[i][0]+", "+AllLinesAllElements[i][1]+" students arrived, "+AllLinesAllElements[i][2]+" staffs arrived, "+AllLinesAllElements[i][3]+" served");   
-            
-        
-        }
-
+    }
 }

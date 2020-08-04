@@ -74,5 +74,4 @@ public class Queue{
         }
         return name2; //return person
     } // remove and return a person from the queue
-
 }

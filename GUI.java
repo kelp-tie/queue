@@ -16,14 +16,19 @@ public class GUI extends JFrame implements ActionListener{
 
     public void actionPerformed(ActionEvent event){
         String cmd=event.getActionCommand();
-        String reply; String reply2;
+        String reply; String reply2; String reply3;
+        String file;
         boolean isStaff; 
         InD input= new InD("input name here");
         InD input2= new InD("is this person a staff?");
+        InD input3= new InD("type in the name of the file");
         switch(cmd){
             case "Help": 
             break;
-            case "Read": 
+            case "Read":  
+            input3.setLocationRelativeTo(this);
+            input3.setVisible(true);
+            reply3= input3.getText();
             break;
             case "Quit": System.exit(0); 
             break;
@@ -47,7 +52,7 @@ public class GUI extends JFrame implements ActionListener{
             break;
             case "Print":
             if(queue.queueEmpty() == false){
-                    queue.printQueue();
+                queue.printQueue();
             } else {
                 System.out.println("Queue's empty.");
             }

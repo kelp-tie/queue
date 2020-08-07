@@ -13,7 +13,7 @@ public class Person
     public Person(String name, boolean isStaff){
         this.name= name;
         this.isStaff = isStaff;
-        }// initate person
+    }// initate person
 
     public void setFollower(Person follower){
         this.follower= follower;
@@ -22,4 +22,8 @@ public class Person
     public Person returnFollower(){
         return follower;
     } // return a follower
+
+    public String showName(){
+        return name;
+    }
 }//Class

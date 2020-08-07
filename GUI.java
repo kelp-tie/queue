@@ -17,7 +17,7 @@ public class GUI extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent event){
         String cmd=event.getActionCommand();
         String reply; String reply2; String reply3;
-        boolean isStaff; 
+        boolean isStaff;
         InD input= new InD("input name here");
         InD input2= new InD("is this person a staff?");
         InD input3= new InD("type in the name of the file");
@@ -28,7 +28,6 @@ public class GUI extends JFrame implements ActionListener{
             input3.setLocationRelativeTo(this);
             input3.setVisible(true);
             reply3= input3.getText();
-            //lines.readCSV();
             break;
             case "Quit": System.exit(0); 
             break;

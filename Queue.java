@@ -6,8 +6,8 @@
  */
 public class Queue{
     Person Head;
-    Person pTail; 
-    Person Tail;
+    Person pTail; //last priority person
+    Person Tail; 
     public Queue(){
         this.Head=null;
         this.pTail=null;
@@ -15,12 +15,11 @@ public class Queue{
     }
 
     public void printQueue(){
-        System.out.println("***");
         if (queueEmpty() == false){
             Person nextP = Head;
             while(nextP != null){
                 System.out.print(nextP.name);
-                nextP = nextP.follower; 
+                nextP = nextP.follower;
                 System.out.print(", ");
             }
         }
@@ -30,7 +29,7 @@ public class Queue{
         if (Head == null) return true;
         else  return false;
     } // checking if queue are empty    
-    
+
     public void addPerson(Person name, boolean isStaff){
         if(isStaff == true){
             if(queueEmpty() == true){ //empty queue
@@ -62,12 +61,11 @@ public class Queue{
         if (Head != null){ //queue not empty
             if (pTail == Head){ // empty priority queue
                 pTail=null;
-            }
-            else if (Tail == Head) { //empty normal queue
+            } 
+            if (Tail == Head) { //empty normal queue
                 Head=null;
                 Tail=null;
-            }
-            else{ //dequeue Head
+            } else{ //dequeue Head
                 Head= Head.follower;
                 name2.follower = null;
             }

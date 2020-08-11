@@ -15,10 +15,11 @@
 import java.util.Scanner; // needed to read files
 import java.io.IOException; // handle errors
 import java.io.File;  //  File handles
+import java.io.FileWriter;
 
 public class readCSV
-{   
-    final String filename= "test.csv"; // change to reflect the CSV we are reading
+{
+    //String filename; // change to reflect the CSV we are reading
     final int MAXLINES=100; // for ease of writing, we are only going to read at most 100 lines.
     final int VALUESPERLINE=4;  // for ease of writing, we know how many values we get on each line.
     int x; int y;
@@ -27,9 +28,9 @@ public class readCSV
      * Constructor for objects of class readCSV
      */
 
-    public readCSV()
+    public readCSV(String content)
     {
-        File  thefile = new File(filename);  // generate the file handle
+        File  thefile = new File("file");  // generate the file handle
         String CSVlines[] = new String[MAXLINES];
         String AllLinesAllElements[][]=new String[MAXLINES][VALUESPERLINE];  // where we keep all those lines we read in.
         int linecount=0;  // initially keeps track of lines read, eventually used to remember the number that was read;
@@ -72,11 +73,15 @@ public class readCSV
 
         } catch (IOException e) {System.out.println(e);}
 
-        for(int i=0;i<linecount;i++)
-            System.out.println("At "+AllLinesAllElements[i][0]+", "+AllLinesAllElements[i][1]+" students arrived, "+AllLinesAllElements[i][2]+" staffs arrived, "+AllLinesAllElements[i][3]+" served");    
+        try {
+            FileWriter writer = new FileWriter(thefile);
+            writer.write(content);
+            writer.flush();
+            writer.close();
+        } catch(IOException e) {};
 
-        lines.printQueue();
-        System.out.println(" were not served.");
-        System.out.println("***");
+        for(int i=0;i<linecount;i++)//print out variables from csv file
+            System.out.println("At "+AllLinesAllElements[i][0]+", "+AllLinesAllElements[i][1]+" students arrived, "+AllLinesAllElements[i][2]+" staffs arrived, "+AllLinesAllElements[i][3]+" served"); 
+        lines.printQueue(); //print out queue read from csv file
     }
 }

@@ -28,6 +28,7 @@ public class GUI extends JFrame implements ActionListener{
             input3.setLocationRelativeTo(this);
             input3.setVisible(true);
             reply3= input3.getText();
+            readCSV csv = new readCSV(reply3);
             break;
             case "Quit": System.exit(0); 
             break;

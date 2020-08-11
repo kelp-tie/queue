@@ -15,6 +15,7 @@ public class Queue{
     }
 
     public void printQueue(){
+        System.out.println("***");
         if (queueEmpty() == false){
             Person nextP = Head;
             while(nextP != null){
@@ -22,6 +23,8 @@ public class Queue{
                 nextP = nextP.follower;
                 System.out.print(", ");
             }
+            System.out.println("");
+            System.out.println("***");
         }
     }// prints out a queue
 

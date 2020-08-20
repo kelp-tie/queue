@@ -23,8 +23,6 @@ public class Queue{
                 nextP = nextP.follower;
                 System.out.print(", ");
             }
-            System.out.println("");
-            System.out.println("***");
         }
     }// prints out a queue
 

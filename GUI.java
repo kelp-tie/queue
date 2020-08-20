@@ -21,6 +21,7 @@ public class GUI extends JFrame implements ActionListener{
         InD input= new InD("input name here");
         InD input2= new InD("is this person a staff?");
         InD input3= new InD("type in the name of the file");
+        Dialog();
         switch(cmd){
             case "Help": 
             break;
@@ -57,7 +58,7 @@ public class GUI extends JFrame implements ActionListener{
                 System.out.println("Queue's empty.");
             }
             break;
-            default: 
+            default: Dialog2();
         }
     }
 
@@ -124,5 +125,23 @@ public class GUI extends JFrame implements ActionListener{
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.pack();
         this.setVisible(true);
+    }
+
+    void Dialog(){
+        System.out.println("This simulation represents a queue of students and teacher lining up in a canteen.");
+        JDialog Box = new JDialog(this);
+        Box.setBounds(500,500,150,70);
+        Box.toFront();
+        Box.setVisible(true);
+        Box.setTitle("Welcome");
+    }
+
+    void Dialog2(){
+        System.out.println("Please use the menu or shortcut to enable functions in the queue.");
+        JDialog Box = new JDialog(this);
+        Box.setBounds(500,500,150,70);
+        Box.toFront();
+        Box.setVisible(true);
+        Box.setTitle("Help");
     }
 }

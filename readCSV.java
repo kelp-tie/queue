@@ -21,7 +21,7 @@ import java.io.FileWriter;
 public class readCSV
 {
     //String filename; // change to reflect the CSV we are reading
-    final int MAXLINES=100; // for ease of writing, we are only going to read at most 100 lines.
+    final int MAXLINES=1000; // for ease of writing, we are only going to read at most 100 lines.
     final int VALUESPERLINE=4;  // for ease of writing, we know how many values we get on each line.
     int x; int y;
     Queue lines;
@@ -63,7 +63,6 @@ public class readCSV
                     lines.addPerson(p, false);
                     p.setEntryTime(Integer.parseInt(values[0]));
                     studentWait = studentWait + p.returnTime(); 
-                    System.out.println(name+"has arrived in normal queue at "+p.returnTime());
                 }//enqueueing students by lines
 
                 for( int b=0; b<Integer.parseInt(values[2]); b++){
@@ -72,27 +71,21 @@ public class readCSV
                     lines.addPerson(q, true);
                     q.setEntryTime(Integer.parseInt(values[0]));
                     staffWait = staffWait + q.returnTime();
-                    System.out.println(name+"has arrived in priority queue at "+q.returnTime());
                 }//enqueueing staffs by lines
-                System.out.println("***");
+
                 for( int c=0; c<Integer.parseInt(values[3]); c++){
                     p = lines.removePerson();
                     if(p.isStaff==true){
-                        System.out.print("student left at "+Integer.parseInt(values[0]));
                         int studentTime = Integer.parseInt(values[0]) - p.returnTime();
-                        System.out.println(" - student wait time is "+studentTime);
                     }else{ 
-                        System.out.print("staff left at "+Integer.parseInt(values[0]));
                         int staffTime = Integer.parseInt(values[0]) - p.returnTime();
-                        System.out.println(" - staff wait time is "+staffTime);
                     }
                 }//dequeueing served by lines
-                System.out.println("***");
+
                 for (int j=0; j< values.length;j++)
                     AllLinesAllElements[i][j]=values[j];
             }  // process the file we read, line by line.
 
-            System.out.println("***");
             for(int i=0;i<linecount;i++){//print out variables from csv file
                 int x = Integer.parseInt(AllLinesAllElements[i][1]);
                 int y = Integer.parseInt(AllLinesAllElements[i][2]);
@@ -103,11 +96,14 @@ public class readCSV
                     System.out.println("At "+AllLinesAllElements[i][0]+", "+AllLinesAllElements[i][1]+" students arrived, "+AllLinesAllElements[i][2]+" staffs arrived, "+AllLinesAllElements[i][3]+" served, "+((x+y)-z)+" not served"); 
                 }
             }
-            System.out.println("Total student wait time: "+studentWait);
-            System.out.println("Total staff wait time: "+staffWait);
-            lines.printQueue(); //print out queue read from csv file
-            System.out.println("were not served.");
-            System.out.println("***");
         } catch (IOException e) {System.out.println("File not recognised. Please check for errors");}
+
+        System.out.println("Total student wait time: "+studentWait);
+        System.out.println("Total staff wait time: "+staffWait);
+        lines.printQueue(); //print out queue read from csv file
+        if(lines.queueEmpty() == false){
+            System.out.println("were not served.");
+        } else System.out.println("all were served.");
+        System.out.println("***");
     }
 }

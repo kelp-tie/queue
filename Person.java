@@ -10,6 +10,7 @@ public class Person
     String name;
     Person follower;
     boolean isStaff;
+    int entryTime;
     public Person(String name, boolean isStaff){
         this.name= name;
         this.isStaff = isStaff;
@@ -23,6 +24,14 @@ public class Person
         return follower;
     } // return a follower
 
+    public void setEntryTime(int entryTime){
+        this.entryTime= entryTime;
+    } // add a follower
+
+    public int returnTime(){
+        return entryTime;
+    } // return a follower
+    
     public String showName(){
         return name;
     }

@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
  */
 public class GUI extends JFrame implements ActionListener{
     Queue queue = new Queue();
+
     /**
      * Constructor for objects of class MenuUpgrade2
      */
@@ -20,16 +21,20 @@ public class GUI extends JFrame implements ActionListener{
         boolean isStaff;
         InD input= new InD("input name here");
         InD input2= new InD("is this person a staff?");
-        InD input3= new InD("type in the name of the file");
-        Dialog();
+        InD input3= new InD("type in the name of the file (name.csv)");
+
         switch(cmd){
-            case "Help": 
-            break;
             case "Read":  
+            String string = "The files available are: test, arrivals";
+            TextArea area2 = new TextArea(string);
+            input3.add(area2);
             input3.setLocationRelativeTo(this);
             input3.setVisible(true);
+            input3.setTitle("help");
             reply3= input3.getText();
-            readCSV csv = new readCSV(reply3);
+            if(reply3 != null){
+                readCSV csv = new readCSV(reply3);
+            }
             break;
             case "Quit": System.exit(0); 
             break;
@@ -37,16 +42,23 @@ public class GUI extends JFrame implements ActionListener{
             input.setLocationRelativeTo(this);
             input.setVisible(true);
             reply= input.getText();
-            input2.setLocationRelativeTo(this);
-            input2.setVisible(true);
-            reply2= input2.getText();
-            if(reply2.equals("yes")){
-                isStaff = true;
-            }else{   
-                isStaff = false;
-            }
-            Person name = new Person(reply, isStaff);
-            queue.addPerson(name, isStaff);
+            if(reply != null){
+                input2.setLocationRelativeTo(this);
+                input2.setVisible(true);
+                reply2= input2.getText();
+                if(reply2 != null){
+                    if(reply2.equals("yes")){
+                        isStaff = true;
+                    }else{   
+                        isStaff = false;
+                    }
+                    Person name = new Person(reply, isStaff);
+                    queue.addPerson(name, isStaff);
+                } else {
+                    TextArea warning = new TextArea("you haven't define if they are a student or a staff.");
+                    warning.setVisible(true);
+                }
+            } 
             break;
             case "Remove Person":
             queue.removePerson();
@@ -58,7 +70,7 @@ public class GUI extends JFrame implements ActionListener{
                 System.out.println("Queue's empty.");
             }
             break;
-            default: Dialog2();
+            default: 
         }
     }
 
@@ -70,6 +82,7 @@ public class GUI extends JFrame implements ActionListener{
         int y = 500;
         this.getContentPane().setPreferredSize(new Dimension(x, y));
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        Dialog();
 
         //Menu bar
         JMenuBar menuBar = new JMenuBar();
@@ -82,20 +95,15 @@ public class GUI extends JFrame implements ActionListener{
         menuBar.add(menu2);
 
         // menu items for menu1
-        JMenuItem menuItemA1 = new JMenuItem("Help");
-        menuItemA1.setAccelerator(KeyStroke.getKeyStroke('h'));
+        JMenuItem menuItemA1 = new JMenuItem("Read");
         menuItemA1.addActionListener(this);
+        menuItemA1.setAccelerator(KeyStroke.getKeyStroke('r'));
         menu1.add(menuItemA1);
 
-        JMenuItem menuItemA2 = new JMenuItem("Read");
+        JMenuItem menuItemA2 = new JMenuItem("Quit");
         menuItemA2.addActionListener(this);
-        menuItemA2.setAccelerator(KeyStroke.getKeyStroke('r'));
+        menuItemA2.setAccelerator(KeyStroke.getKeyStroke('q'));
         menu1.add(menuItemA2);
-
-        JMenuItem menuItemA3 = new JMenuItem("Quit");
-        menuItemA3.addActionListener(this);
-        menuItemA3.setAccelerator(KeyStroke.getKeyStroke('q'));
-        menu1.add(menuItemA3);
 
         // menu items for menu2
         JMenuItem menuItemB1 = new JMenuItem("Add Person");
@@ -118,30 +126,14 @@ public class GUI extends JFrame implements ActionListener{
         this.setVisible(true);
     }
 
-    public void inputDialog(){
-        // input dialog box
-        setTitle("Name");
-        this.getContentPane().setPreferredSize(new Dimension(400,600));
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.pack();
-        this.setVisible(true);
-    }
-
     void Dialog(){
-        System.out.println("This simulation represents a queue of students and teacher lining up in a canteen.");
+        String string = "This simulation represents a queue of students and\n teacher lining up in a canteen.\n Please use the menu or shortcut\n to enable functions in the queue.\n The tools does not affect the files read.\n It is for experimental \n purpose only.";
         JDialog Box = new JDialog(this);
-        Box.setBounds(500,500,150,70);
+        TextArea area = new TextArea(string);
+        Box.setBounds(50,50,1*string.length(),1*string.length());
+        Box.add(area);
         Box.toFront();
         Box.setVisible(true);
         Box.setTitle("Welcome");
-    }
-
-    void Dialog2(){
-        System.out.println("Please use the menu or shortcut to enable functions in the queue.");
-        JDialog Box = new JDialog(this);
-        Box.setBounds(500,500,150,70);
-        Box.toFront();
-        Box.setVisible(true);
-        Box.setTitle("Help");
     }
 }
